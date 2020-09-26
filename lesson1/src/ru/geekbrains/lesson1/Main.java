@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     //    Задание 1
     public static void main(String [] args){
-//        Задание 2
+//        Задание 2 (создать переменные всех пройденных типов данных)
 //        Целочисленные
         byte numberByte = 1;
         short numberShort = 11;
