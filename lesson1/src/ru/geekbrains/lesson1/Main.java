@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     //    Задание 1
     public static void main(String [] args){
-//        Задание 2
+//        Задание 2 (создать переменные всех пройденных типов данных)
 //        Целочисленные
         byte numberByte = 1;
         short numberShort = 11;
@@ -26,13 +26,13 @@ public class Main {
         System.out.println("Задание номер 3.\n" +
                 "Найдем результат выражения a * (b + (c / d)):");
         System.out.println("Введите значение a: ");
-        int a = scanner.nextInt();
+        double a = scanner.nextInt();
         System.out.println("Введите значение b: ");
-        int b = scanner.nextInt();
+        double b = scanner.nextInt();
         System.out.println("Введите значение c: ");
-        int c = scanner.nextInt();
+        double c = scanner.nextInt();
         System.out.println("Введите значение d: ");
-        int d = scanner.nextInt();
+        double d = scanner.nextInt();
 //        Условие, при котором мы вызываем наш метод
         if (d != 0){
             System.out.println("Результат выражения = " + searchExpression(a, b, c, d));
@@ -94,8 +94,8 @@ public class Main {
     }
 
     //    Задание 3
-    static int searchExpression(int a, int b, int c, int d){
-        int result = 0;
+    static double searchExpression(double a, double b, double c, double d){
+        double result = 0;
         result = a * (b + (c / d));
         return result;
     }
