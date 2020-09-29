@@ -53,5 +53,18 @@ public class Main {
 
 //        Отступ
         System.out.println("");
+
+//        Задание 4 - Создать квадратный двумерный массив и заполнить его диагональные элементы единицами
+        System.out.println("Задание №4");
+        int [][] squareArray = new int[4][4];
+        for (int i = 0; i < squareArray.length; i++){
+            for (int j = 0; j < squareArray.length; j++){
+                if (i == j){
+                    squareArray[i][j] = 1;
+                }
+                System.out.print(squareArray[i][j]);
+            }
+            System.out.println();
+        }
     }
 }
