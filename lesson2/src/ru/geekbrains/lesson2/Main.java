@@ -1,6 +1,7 @@
 package ru.geekbrains.lesson2;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
@@ -35,13 +36,12 @@ public class Main {
 //        Задание 5 - Найти максимальный и минимальный элемент в массиве
         System.out.println("Задание №5");
         int [] arrMinAndMax = new int[5];
-        arrMinAndMax[0] = 23;
-        arrMinAndMax[1] = 12;
-        arrMinAndMax[2] = 10;
-        arrMinAndMax[3] = 20;
-        arrMinAndMax[4] = 111;
-        System.out.println("min = " + searchMinArray(arrMinAndMax));
-        System.out.println("max = " + searchMaxArray(arrMinAndMax));
+        arrMinAndMax[0] = 90;
+        arrMinAndMax[1] = 23;
+        arrMinAndMax[2] = 111;
+        arrMinAndMax[3] = 33;
+        arrMinAndMax[4] = 0;
+        searchMinAndMaxArray(arrMinAndMax);
 
 //        Отступ
         System.out.println("");
@@ -58,6 +58,18 @@ public class Main {
         arrSum[6] = 10;
         arrSum[7] = 1;
         System.out.println(checkBalance(arrSum));
+
+//        Отступ
+        System.out.println("");
+
+//        Задание 7
+        System.out.println("Задание №7");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Число n - сместить все элементы массива на n позиций:");
+        int n = scanner.nextInt();
+        int [] offsetArr = {3, 5, 6, 1};
+        System.out.println("Исходный массив - " + Arrays.toString(offsetArr));
+        newArr(offsetArr, n);
     }
 
     /*Метод для задания 1*/
@@ -109,25 +121,18 @@ public class Main {
     }
 
     /*Метод (задание 5) для поиска минимального значения в массиве*/
-    static int searchMinArray(int [] arr){
+    static void searchMinAndMaxArray(int [] arr){
         int min = arr[0];
+        int max = arr[0];
         for (int i = 0; i < arr.length; i++){
             if (arr[i] <= min){
                 min = arr[i];
             }
-        }
-        return min;
-    }
-
-    /*Метод (задание 5) для поиска максимального значения в массиве*/
-    static int searchMaxArray(int [] arr){
-        int max = arr[0];
-        for (int i = 0; i < arr.length; i++){
             if (arr[i] >= max){
                 max = arr[i];
             }
         }
-        return max;
+        System.out.println("min = " + min + ", max = " + max);
     }
 
     /*Метод (задание 6) для сравнения суммы правой и левой части*/
@@ -158,5 +163,26 @@ public class Main {
             step ++;
         }
         return answer;
+    }
+
+    /*Метод (задача 7) - сместить все элементы массива на n позиций*/
+    static void newArr(int [] arr, int a){
+        int step = 0; // шаг
+        int value;
+        if (a < 0){
+            a = Math.abs(a); // Число по модулю
+        }
+        /*Цикл*/
+        while(step != a){
+            for (int i = arr.length - 1; i < arr.length; i++) {
+                for (int j = 0; j < arr.length; j++){
+                    value = arr[j];
+                    arr[j] = arr[i];
+                    arr[i] = value;
+                }
+            }
+            step++;
+        }
+        System.out.println("Новый массив - " + Arrays.toString(arr));
     }
 }
