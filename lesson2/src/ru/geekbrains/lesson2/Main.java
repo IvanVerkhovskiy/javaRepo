@@ -56,7 +56,7 @@ public class Main {
 
 //        Задание 4 - Создать квадратный двумерный массив и заполнить его диагональные элементы единицами
         System.out.println("Задание №4");
-        int [][] squareArray = new int[4][4];
+        int [][] squareArray = new int[5][5];
         for (int i = 0; i < squareArray.length; i++){
             for (int j = 0; j < squareArray.length; j++){
                 if (i == j){
@@ -66,5 +66,41 @@ public class Main {
             }
             System.out.println();
         }
+
+//        Отступ
+        System.out.println("");
+
+//        Задание 5 - Найти максимальный и минимальный элемент в массиве
+        System.out.println("Задание №5");
+        int [] arr = new int[5];
+        arr[0] = 23;
+        arr[1] = 12;
+        arr[2] = 10;
+        arr[3] = 20;
+        arr[4] = 111;
+        System.out.println("min = " + searchMinArray(arr));
+        System.out.println("max = " + searchMaxArray(arr));
+    }
+
+    /*Метод для поиска минимального значения в массиве*/
+    static int searchMinArray(int [] arr){
+        int result = arr[0];
+        for (int i = 0; i < arr.length; i++){
+            if (arr[i] <= result){
+                result = arr[i];
+            }
+        }
+        return result;
+    }
+
+    /*Метод для поиска максимального значения в массиве*/
+    static int searchMaxArray(int [] arr){
+        int result = arr[0];
+        for (int i = 0; i < arr.length; i++){
+            if (arr[i] >= result){
+                result = arr[i];
+            }
+        }
+        return result;
     }
 }
