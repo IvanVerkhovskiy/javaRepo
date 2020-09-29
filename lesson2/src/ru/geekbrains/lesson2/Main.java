@@ -6,17 +6,63 @@ public class Main {
     public static void main(String[] args){
 //        Задание 1 - задать целочисленный массив
         System.out.println("Задание №1");
-        int[] a = new int[10];
-        a[0] = 1;
-        a[1] = 1;
-        a[2] = 0;
-        a[3] = 0;
-        a[4] = 1;
-        a[5] = 0;
-        a[6] = 1;
-        a[7] = 1;
-        a[8] = 0;
-        a[9] = 0;
+        inArr();
+
+//        Отступ
+        System.out.println("");
+
+//        Задание 2 - задать пустой целочисленный массив
+        System.out.println("Задание №2");
+        fillArr();
+
+//        Отступ
+        System.out.println("");
+
+//        Задание 3 - Задать массив, числа меньше 6 умножить на 2
+        System.out.println("Задание №3");
+        changeArr();
+
+//        Отступ
+        System.out.println("");
+
+//        Задание 4 - Создать квадратный двумерный массив и заполнить его диагональные элементы единицами
+        System.out.println("Задание №4");
+        arrDiagonal();
+
+//        Отступ
+        System.out.println("");
+
+//        Задание 5 - Найти максимальный и минимальный элемент в массиве
+        System.out.println("Задание №5");
+        int [] arrMinAndMax = new int[5];
+        arrMinAndMax[0] = 23;
+        arrMinAndMax[1] = 12;
+        arrMinAndMax[2] = 10;
+        arrMinAndMax[3] = 20;
+        arrMinAndMax[4] = 111;
+        System.out.println("min = " + searchMinArray(arrMinAndMax));
+        System.out.println("max = " + searchMaxArray(arrMinAndMax));
+
+//        Отступ
+        System.out.println("");
+
+//        Задание 6
+        System.out.println("Задание №6");
+        int [] arrSum = new int[8];
+        arrSum[0] = 2;
+        arrSum[1] = 2;
+        arrSum[2] = 2;
+        arrSum[3] = 1;
+        arrSum[4] = 2;
+        arrSum[5] = 2;
+        arrSum[6] = 10;
+        arrSum[7] = 1;
+        System.out.println(checkBalance(arrSum));
+    }
+
+    /*Метод для задания 1*/
+    static void inArr(){
+        int[] a = {1, 1, 0, 0, 1, 0, 1, 1, 0, 0};
         for (int i = 0; i < a.length; i++){
             if (a[i] == 1){
                 a[i] = 0;
@@ -26,23 +72,19 @@ public class Main {
             // Результат
             System.out.print(a[i] + " ");
         }
+    }
 
-//        Отступ
-        System.out.println("");
-
-//        Задание 2 - задать пустой целочисленный массив
-        System.out.println("Задание №2");
+    /*Метод для задания 2*/
+    static void fillArr(){
         int [] b = new int[8];
         for (int i = 0; i < b.length; i++){
             b[i] = i * 3;
             System.out.print(b[i] + " ");
         }
+    }
 
-//        Отступ
-        System.out.println("");
-
-//        Задание 3 - Задать массив, числа меньше 6 умножить на 2
-        System.out.println("Задание №3");
+    /*Метод для задания 3*/
+    static void changeArr(){
         int [] c = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
         for (int i = 0; i < c.length; i ++){
             if (c[i] < 6){
@@ -50,12 +92,10 @@ public class Main {
             }
             System.out.print(c[i] + " ");
         }
+    }
 
-//        Отступ
-        System.out.println("");
-
-//        Задание 4 - Создать квадратный двумерный массив и заполнить его диагональные элементы единицами
-        System.out.println("Задание №4");
+    /*Метод для задания 4*/
+    static void arrDiagonal(){
         int [][] squareArray = new int[5][5];
         for (int i = 0; i < squareArray.length; i++){
             for (int j = 0; j < squareArray.length; j++){
@@ -66,41 +106,57 @@ public class Main {
             }
             System.out.println();
         }
-
-//        Отступ
-        System.out.println("");
-
-//        Задание 5 - Найти максимальный и минимальный элемент в массиве
-        System.out.println("Задание №5");
-        int [] arr = new int[5];
-        arr[0] = 23;
-        arr[1] = 12;
-        arr[2] = 10;
-        arr[3] = 20;
-        arr[4] = 111;
-        System.out.println("min = " + searchMinArray(arr));
-        System.out.println("max = " + searchMaxArray(arr));
     }
 
-    /*Метод для поиска минимального значения в массиве*/
+    /*Метод (задание 5) для поиска минимального значения в массиве*/
     static int searchMinArray(int [] arr){
-        int result = arr[0];
+        int min = arr[0];
         for (int i = 0; i < arr.length; i++){
-            if (arr[i] <= result){
-                result = arr[i];
+            if (arr[i] <= min){
+                min = arr[i];
             }
         }
-        return result;
+        return min;
     }
 
-    /*Метод для поиска максимального значения в массиве*/
+    /*Метод (задание 5) для поиска максимального значения в массиве*/
     static int searchMaxArray(int [] arr){
-        int result = arr[0];
+        int max = arr[0];
         for (int i = 0; i < arr.length; i++){
-            if (arr[i] >= result){
-                result = arr[i];
+            if (arr[i] >= max){
+                max = arr[i];
             }
         }
-        return result;
+        return max;
+    }
+
+    /*Метод (задание 6) для сравнения суммы правой и левой части*/
+    static boolean checkBalance(int[] arr){
+        int sumLeft = 0; // Сумма левой части
+        int sumRight = 0; // Сумма правой части
+        int step = 1; // Разделитель
+        boolean answer = false; // Ответ
+
+        /*Решение*/
+        while (step != arr.length){
+            /*Ограничить левую часть и посчитать сумму*/
+            for (int i = 0; i < arr.length - step; i++){
+                sumLeft = sumLeft + arr[i];
+            }
+            /*Ограничить правую часть и посчитать суммы*/
+            for (int j = arr.length - step; j < arr.length; j++){
+                sumRight = sumRight + arr[j];
+            }
+            /*Сравним левую часть и правую*/
+            if (sumLeft == sumRight){
+                answer = true;
+                break;
+            }
+            /*Обнуляем значения*/
+            sumLeft = 0;
+            sumRight = 0;
+            step ++;
+        }
+        return answer;
     }
 }
