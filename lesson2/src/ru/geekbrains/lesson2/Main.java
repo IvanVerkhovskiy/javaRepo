@@ -35,12 +35,13 @@ public class Main {
 
 //        Задание 5 - Найти максимальный и минимальный элемент в массиве
         System.out.println("Задание №5");
-        int [] arrMinAndMax = new int[5];
+        int [] arrMinAndMax = new int[6];
         arrMinAndMax[0] = 90;
         arrMinAndMax[1] = 23;
         arrMinAndMax[2] = 111;
         arrMinAndMax[3] = 33;
-        arrMinAndMax[4] = 0;
+        arrMinAndMax[4] = 222;
+        arrMinAndMax[5] = 111;
         searchMinAndMaxArray(arrMinAndMax);
 
 //        Отступ
@@ -65,11 +66,12 @@ public class Main {
 //        Задание 7
         System.out.println("Задание №7");
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Число n - сместить все элементы массива на n позиций:");
-        int n = scanner.nextInt();
         int [] offsetArr = {3, 5, 6, 1};
         System.out.println("Исходный массив - " + Arrays.toString(offsetArr));
+        System.out.println("Число n - сместить все элементы массива на n позиций:");
+        int n = scanner.nextInt();
         newArr(offsetArr, n);
+        scanner.close();
     }
 
     /*Метод для задания 1*/
@@ -108,7 +110,7 @@ public class Main {
 
     /*Метод для задания 4*/
     static void arrDiagonal(){
-        int [][] squareArray = new int[5][5];
+        int [][] squareArray = new int[8][8];
         for (int i = 0; i < squareArray.length; i++){
             for (int j = 0; j < squareArray.length; j++){
                 if (i == j){
