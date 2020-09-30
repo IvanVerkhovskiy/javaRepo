@@ -114,10 +114,11 @@ public class Main {
         int step = 1;
         for (int i = 0; i < squareArray.length; i++){
             for (int j = 0; j < squareArray.length; j++){
-                /**/
+                /*Для главной диагонали*/
                 if (i == j){
                     squareArray[i][j] = 1;
                 }
+                /*Для побочной диагонали*/
                 if (j == squareArray.length - step){
                     squareArray[i][j] = 1;
                     step ++;
