@@ -111,10 +111,16 @@ public class Main {
     /*Метод для задания 4*/
     static void arrDiagonal(){
         int [][] squareArray = new int[8][8];
+        int step = 1;
         for (int i = 0; i < squareArray.length; i++){
             for (int j = 0; j < squareArray.length; j++){
+                /**/
                 if (i == j){
                     squareArray[i][j] = 1;
+                }
+                if (j == squareArray.length - step){
+                    squareArray[i][j] = 1;
+                    step ++;
                 }
                 System.out.print(squareArray[i][j]);
             }
