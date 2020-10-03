@@ -15,6 +15,9 @@ public class Main {
                     "1. От 0 до 9 (3 попытки)\n" +
                     "2. От 0 до 50 (5 попыток)\n" +
                     "3. От 0 до 100 (7 попыток)");
+
+            checkNumber();
+
             level = scanner.nextInt();
             switch (level){
                 case 1:
@@ -43,13 +46,12 @@ public class Main {
     // Метод, который вызывает игру
     public static void playGame(int level, int step){
         System.out.println("Пожалуйста, введите задуманное число от 0 до " + level + ":");
-        // Задумываем число от 0 до 9
+        // Задумываем число от 0 до 9, 50 или 100
         int random = (int)(Math.random() * level);
+
 //        Проверка на ввод числа
-        while (!scanner.hasNextInt()){
-            scanner.next();
-            System.out.println("Вы ввели не число! Пожалуйста, попробуйте снова.");
-        }
+        checkNumber();
+
 //        Основная часть игры
         while (step != 0){
             int userNumber = scanner.nextInt(); // Пользователь вводит число
@@ -74,10 +76,9 @@ public class Main {
         System.out.println("Вы хотите попробовать ещё раз?\n" +
                 "1 - Да\n" +
                 "0 - Нет");
-        while (!scanner.hasNextInt()){
-            scanner.next();
-            System.out.println("Вы ввели не число! Пожалуйста, попробуйте снова.");
-        }
+
+        checkNumber();
+
         while (true){
             value = scanner.nextInt();
             if (value == 1 || value == 0){
@@ -85,6 +86,14 @@ public class Main {
             } else {
                 System.out.println("Вы ввели не ту команду!");
             }
+        }
+    }
+
+//    Метод для проверки ввода чисел
+    public static void checkNumber() {
+        while (!scanner.hasNextInt()) {
+            scanner.next();
+            System.out.println("Вы ввели не число! Пожалуйста, попробуйте снова.");
         }
     }
 }
