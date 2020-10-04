@@ -30,8 +30,7 @@ public class WordGame {
                     }
                 }
             } catch (StringIndexOutOfBoundsException index){
-                System.out.println();
-                System.out.println("Вы ввели слишком маленькое слово!");
+                System.out.print("");
             }
             if (wordRandom.equals(userAnswer)){
                 System.out.println("");
