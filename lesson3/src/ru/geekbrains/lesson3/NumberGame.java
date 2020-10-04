@@ -2,7 +2,7 @@ package ru.geekbrains.lesson3;
 
 import java.util.Scanner;
 
-public class Main {
+public class NumberGame {
 
     static Scanner scanner = new Scanner(System.in);
     static int value = 1;
