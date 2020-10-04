@@ -40,7 +40,7 @@ public class NumberGame {
             }
         }
         // Если значение равно 0, то выходим
-        System.out.println("До свидания!");
+        System.out.println("Выход из игры");
     }
 
     // Метод, который вызывает игру

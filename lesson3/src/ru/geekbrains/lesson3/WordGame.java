@@ -19,14 +19,19 @@ public class WordGame {
             userAnswer = scanner.nextLine();
             int userAnswerLength = userAnswer.length() - 1;
             int wordRandomLength = wordRandom.length() - 1;
-            for (int i = 0; i <= wordRandomLength; i ++){
-                userText = userAnswer.charAt(i);
-                randomText = wordRandom.charAt(i);
-                if (userText == randomText){
-                    System.out.print(userText);
-                } else {
-                    System.out.print("*");
+            try {
+                for (int i = 0; i <= wordRandomLength; i ++){
+                    userText = userAnswer.charAt(i);
+                    randomText = wordRandom.charAt(i);
+                    if (userText == randomText){
+                        System.out.print(userText);
+                    } else {
+                        System.out.print("*");
+                    }
                 }
+            } catch (StringIndexOutOfBoundsException index){
+                System.out.println();
+                System.out.println("Вы ввели слишком маленькое слово!");
             }
             if (wordRandom.equals(userAnswer)){
                 System.out.println("");
