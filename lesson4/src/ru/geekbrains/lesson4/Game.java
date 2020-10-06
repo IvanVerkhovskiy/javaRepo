@@ -102,6 +102,11 @@ public class Game {
         int x;
         int y;
         do {
+//            for (int i = 0; i < SIZE; i++){
+//                for (int j = 0; j < SIZE; j++){
+//
+//                }
+//            }
             x = random.nextInt(SIZE);
             y = random.nextInt(SIZE);
         } while (!isCellValid(x, y));
@@ -132,22 +137,41 @@ public class Game {
 //    Метод - определение победителя
     public static boolean checkWin(char symb){
 //        Проверка по строчкам и столбцам
+        int count_main_diagonal = 0; // для главной диагонали
+        int count_side_diagonal = 0; // для побочной диагонали
+        int step = 1; // Шаг для побочной диагонали
         for (int i = 0; i < SIZE; i++){
-            int count_DOT = 0; // для строки
-            int count_DOT_O = 0; // для столбца
-            int j = 0;
-            for (; j < SIZE; j++){
+            int count_DOT_line = 0; // для строки
+            int count_DOT_column = 0; // для столбца
+            for (int j = 0; j < SIZE; j++){
+//                Проверка по строке
                 if (map[i][j] == symb){
-                    count_DOT ++;
+                    count_DOT_line ++;
                 }
+//                Проверка по столбцам
                 if (map[j][i] == symb){
-                    count_DOT_O ++;
+                    count_DOT_column ++;
+                }
+//                Проверка по главной диагонали
+                if (i == j && map[i][j] == symb){
+                    count_main_diagonal ++;
+                }
+//                Проверка по побочной диагонали
+                if (j == SIZE - step && map[i][j] == symb){
+                    step++;
+                    count_side_diagonal++;
                 }
             }
-            if (count_DOT == DOTS_TO_WIN){
+            if (count_DOT_line == DOTS_TO_WIN){
                 return true;
             }
-            if (count_DOT_O == DOTS_TO_WIN){
+            if (count_DOT_column == DOTS_TO_WIN){
+                return true;
+            }
+            if (count_main_diagonal == DOTS_TO_WIN){
+                return true;
+            }
+            if (count_side_diagonal == DOTS_TO_WIN){
                 return true;
             }
         }
