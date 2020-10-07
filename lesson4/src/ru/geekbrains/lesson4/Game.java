@@ -15,11 +15,28 @@ public class Game {
 
     public static Scanner scanner = new Scanner(System.in);
     public static Random random = new Random();
-    public static int value = 1;
+    public static int value = 1; // Для продолжения или выхода
+    public static int selection = 0; // Выбор фишки
+
+    public static char dotHuman; // Выбор фишки для игрока
+    public  static char dotComputer; // Выбор фишки для компьютера
 
     public static void main(String[] args){
         while (value == 1){
             System.out.println("Игра Крестики-нолики с компьютером.");
+//            Спрашиваем игрока про фишки
+            System.out.println("Выберите фишку:\n" +
+                    "1 - Крестик\n" +
+                    "2 - Нолик");
+            checkNumber();
+            selection = scanner.nextInt();
+            if (selection == 1){
+                dotHuman = DOT_X;
+                dotComputer = DOT_O;
+            } else {
+                dotHuman = DOT_O;
+                dotComputer = DOT_X;
+            }
 //        Инициализируем игровое поле
             initMap();
 //        Отрисовка поля
@@ -29,7 +46,7 @@ public class Game {
                 // Ход первого игрока
                 humanTurn();
                 // Проверка на победу
-                if (checkWin(DOT_X)){
+                if (checkWin(dotHuman)){
                     System.out.println("Вы победили!");
                     break;
                 }
@@ -41,7 +58,7 @@ public class Game {
                 // Ход компьютера
                 aiTurn();
                 // Проверка на победу
-                if (checkWin(DOT_O)){
+                if (checkWin(dotComputer)){
                     System.out.println("Победил компьютер!");
                     break;
                 }
@@ -97,7 +114,7 @@ public class Game {
             checkNumber();
             y = scanner.nextInt() - 1;
         } while (!isCellValid(x, y));
-        map[y][x] = DOT_X;
+        map[y][x] = dotHuman;
         printMap();
     }
 
@@ -114,15 +131,15 @@ public class Game {
             for (int i = 0; i < SIZE; i++){
                 for (int j = 0; j < SIZE; j++){
 //                    Для строки
-                    if (map[i][j] == DOT_X){
+                    if (map[i][j] == dotHuman){
                         stepLine++;
                     }
 //                    Для столбца
-                    if (map[j][i] == DOT_X){
+                    if (map[j][i] == dotHuman){
                         stepColumn++;
                     }
 //                    Для главное диагонали
-                    if (i == j && map[i][j] == DOT_X){
+                    if (i == j && map[i][j] == dotHuman){
                         stepDiagоnal++;
                     }
 //                    Проверка для строки
@@ -139,7 +156,7 @@ public class Game {
                                 y = i;
                                 x = random.nextInt(SIZE);
                             } while (!isCellValid(x, y));
-                            map[y][x] = DOT_O;
+                            map[y][x] = dotComputer;
                             break;
                         }
                     }
@@ -157,7 +174,7 @@ public class Game {
                                 x = i;
                                 y = random.nextInt(SIZE);
                             } while (!isCellValid(x, y));
-                            map[y][x] = DOT_O;
+                            map[y][x] = dotComputer;
                             break;
                         }
                     }
@@ -175,7 +192,7 @@ public class Game {
                                 y = i;
                                 x = random.nextInt(SIZE);
                             } while (!isCellValid(x, y));
-                            map[y][x] = DOT_O;
+                            map[y][x] = dotComputer;
                             break;
                         }
                     }
@@ -198,7 +215,7 @@ public class Game {
                 x = random.nextInt(SIZE);
                 y = random.nextInt(SIZE);
             } while (!isCellValid(x, y));
-            map[y][x] = DOT_O;
+            map[y][x] = dotComputer;
         }
 
         System.out.println("Компьютер совершил ход в точку с координатами: " + (x + 1) + " и " + (y + 1));
