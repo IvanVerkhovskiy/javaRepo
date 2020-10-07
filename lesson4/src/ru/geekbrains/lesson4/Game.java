@@ -15,39 +15,43 @@ public class Game {
 
     public static Scanner scanner = new Scanner(System.in);
     public static Random random = new Random();
+    public static int value = 1;
 
     public static void main(String[] args){
-        System.out.println("Игра Крестики-нолики с компьютером.");
+        while (value == 1){
+            System.out.println("Игра Крестики-нолики с компьютером.");
 //        Инициализируем игровое поле
-        initMap();
+            initMap();
 //        Отрисовка поля
-        printMap();
+            printMap();
 //        Начало игры
-        while (true){
-            // Ход первого игрока
-            humanTurn();
-            // Проверка на победу
-            if (checkWin(DOT_X)){
-                System.out.println("Вы победили!");
-                break;
+            while (true){
+                // Ход первого игрока
+                humanTurn();
+                // Проверка на победу
+                if (checkWin(DOT_X)){
+                    System.out.println("Вы победили!");
+                    break;
+                }
+                // Проверка на ничью
+                if (isMapFull()){
+                    System.out.println("Ничья!");
+                    break;
+                }
+                // Ход компьютера
+                aiTurn();
+                // Проверка на победу
+                if (checkWin(DOT_O)){
+                    System.out.println("Победил компьютер!");
+                    break;
+                }
+                // Проверка на ничью
+                if (isMapFull()){
+                    System.out.println("Ничья!");
+                    break;
+                }
             }
-            // Проверка на ничью
-            if (isMapFull()){
-                System.out.println("Ничья!");
-                break;
-            }
-            // Ход компьютера
-            aiTurn();
-            // Проверка на победу
-            if (checkWin(DOT_O)){
-                System.out.println("Победил компьютер!");
-                break;
-            }
-            // Проверка на ничью
-            if (isMapFull()){
-                System.out.println("Ничья!");
-                break;
-            }
+            continueGame();
         }
     }
 
@@ -99,19 +103,105 @@ public class Game {
 
 //    Метод - компьютер начинает свой ход
     public static void aiTurn(){
-        int x;
-        int y;
-        do {
-//            for (int i = 0; i < SIZE; i++){
-//                for (int j = 0; j < SIZE; j++){
-//
-//                }
-//            }
-            x = random.nextInt(SIZE);
-            y = random.nextInt(SIZE);
-        } while (!isCellValid(x, y));
-        map[y][x] = DOT_O;
-        System.out.println("Компьютер совершил ход в точку с коорднатами: " + (x + 1) + " и " + (y + 1));
+        int x = 0; // Координата x
+        int y = 0; // Координата y
+        int stepLine = 0; // Шаг для проверки по строка
+        int stepColumn = 0; // Шаг для проверки по столбцам
+        int stepDiagоnal = 0; // Шаг для проверки по диагонали
+        int step2 = 0;
+        int step3 = 0;
+        int step4 = 0;
+            for (int i = 0; i < SIZE; i++){
+                for (int j = 0; j < SIZE; j++){
+//                    Для строки
+                    if (map[i][j] == DOT_X){
+                        stepLine++;
+                    }
+//                    Для столбца
+                    if (map[j][i] == DOT_X){
+                        stepColumn++;
+                    }
+//                    Для главное диагонали
+                    if (i == j && map[i][j] == DOT_X){
+                        stepDiagоnal++;
+                    }
+//                    Проверка для строки
+                    if (stepLine == DOTS_TO_WIN - 1){
+                        for (int k = 0; k < SIZE; k++){
+                            if (map[i][k] != DOT_EMPTY){
+                                step2++;
+                            }
+                        }
+                        if (step2 == SIZE){
+                            break;
+                        } else {
+                            do {
+                                y = i;
+                                x = random.nextInt(SIZE);
+                            } while (!isCellValid(x, y));
+                            map[y][x] = DOT_O;
+                            break;
+                        }
+                    }
+//                    Проверка для столбца
+                    if (stepColumn == DOTS_TO_WIN - 1){
+                        for (int k = 0; k < SIZE; k++){
+                            if (map[k][i] != DOT_EMPTY){
+                                step3++;
+                            }
+                        }
+                        if (step3 == SIZE){
+                            break;
+                        } else {
+                            do {
+                                x = i;
+                                y = random.nextInt(SIZE);
+                            } while (!isCellValid(x, y));
+                            map[y][x] = DOT_O;
+                            break;
+                        }
+                    }
+//                    Проверка для диагонали
+                    if (stepDiagоnal == DOTS_TO_WIN - 1){
+                        for (int k = 0; k < SIZE; k++){
+                            if (i == k || map[i][k] != DOT_EMPTY){
+                                step4++;
+                            }
+                        }
+                        if (step4 == SIZE){
+                            break;
+                        } else {
+                            do {
+                                y = i;
+                                x = random.nextInt(SIZE);
+                            } while (!isCellValid(x, y));
+                            map[y][x] = DOT_O;
+                            break;
+                        }
+                    }
+                }
+                if (stepLine == DOTS_TO_WIN - 1){
+                    break;
+                }
+                if (stepColumn == DOTS_TO_WIN - 1){
+                    break;
+                }
+                if (stepDiagоnal == DOTS_TO_WIN - 1){
+                    break;
+                }
+                stepLine = 0;
+                stepColumn = 0;
+                stepDiagоnal = 0;
+            }
+        if (stepLine == 0 || stepColumn == 0 || step3 == SIZE || step2 == SIZE || stepDiagоnal == 0 || step4 == SIZE){
+            do {
+                x = random.nextInt(SIZE);
+                y = random.nextInt(SIZE);
+            } while (!isCellValid(x, y));
+            map[y][x] = DOT_O;
+        }
+
+        System.out.println("Компьютер совершил ход в точку с координатами: " + (x + 1) + " и " + (y + 1));
         printMap();
     }
 
@@ -138,8 +228,8 @@ public class Game {
     public static boolean checkWin(char symb){
 //        Проверка по строчкам и столбцам
         int count_main_diagonal = 0; // для главной диагонали
-        int count_side_diagonal = 0; // для побочной диагонали
-        int step = 1; // Шаг для побочной диагонали
+        int count_side_diagonal = 0; // для второй диагонали
+        int step = 1; // Шаг для второй диагонали
         for (int i = 0; i < SIZE; i++){
             int count_DOT_line = 0; // для строки
             int count_DOT_column = 0; // для столбца
@@ -156,7 +246,7 @@ public class Game {
                 if (i == j && map[i][j] == symb){
                     count_main_diagonal ++;
                 }
-//                Проверка по побочной диагонали
+//                Проверка по второй диагонали
                 if (j == SIZE - step && map[i][j] == symb){
                     step++;
                     count_side_diagonal++;
@@ -183,6 +273,20 @@ public class Game {
         while (!scanner.hasNextInt()){
             scanner.next();
             System.out.println("Вы ввели не число!");
+        }
+    }
+//    Хотите продолжить игру?
+    public static int continueGame(){
+        System.out.println("Хотите продолжить игру?\n" +
+                "1 - Да\n" +
+                "2 - Нет");
+        checkNumber();
+        value = scanner.nextInt();
+        if (value == 1){
+            return value;
+        } else {
+            value = 0;
+            return value;
         }
     }
 }
