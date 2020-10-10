@@ -14,6 +14,7 @@ public class Main {
         employeeArray[4] = new Employee("Лобанов Руслан Русланович", "Руководитель проета", "test5@gmail.com", "8-333-788-99-00", 70000, 46);
         //    Вызываем список сотрудников
         for (int i = 0; i < employeeArray.length; i++){
+//            Условие для отображения данных
             if (employeeArray[i].age > 40){
                 employeeArray[i].informationAboutEmployees();
                 System.out.println();
