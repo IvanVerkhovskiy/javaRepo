@@ -10,20 +10,20 @@ public class Main {
     static int valueFood = 0; // Количество еды
     static int count = 0; // Счётчик
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 //        Создаём наших котиков
         System.out.println("Сколько у вас котов?");
         checkValue(); // Проверка на число
         valueCat = scanner.nextInt(); // Вводим количество котов
 //        Создаём котиков
-        Cat [] cats = new Cat[valueCat];
+        Cat[] cats = new Cat[valueCat];
 //        Заполняем данными
         System.out.println("Пожалуйста, заполните данные котиков:\n" +
                 "1. Заполнить автоматически\n" +
                 "2. Заполнить самому");
         checkValue(); // Проверка на число
         value = scanner.nextInt();
-        switch (value){
+        switch (value) {
             case 1:
                 // Метод автоматического заполнения данных котов
                 Cat.generateCats(cats);
@@ -48,19 +48,11 @@ public class Main {
         System.out.println();
 //        Кошки начинают кушать
         Cat.eat(plate, cats);
-//        Находим голодных кошек
-        if (Cat.getHungryCat(cats) > 0){
-            System.out.println("У вас есть голодные котики. Давайте добавим им корма?\n" +
-                    "1. Добавить автоматически." +
-                    "2. Добавить вручную.");
-        } else {
-            System.out.println("Все кошки наелись!");
-        }
     }
 
-//    Метод для проверки, что пользователь ввёл число
-    public static void checkValue(){
-        while (!scanner.hasNextInt()){
+    //    Метод для проверки, что пользователь ввёл число
+    public static void checkValue() {
+        while (!scanner.hasNextInt()) {
             scanner.next();
             System.out.println("Вы ввели не число!");
         }
