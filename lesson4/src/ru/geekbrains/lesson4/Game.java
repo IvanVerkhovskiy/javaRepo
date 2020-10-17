@@ -106,7 +106,7 @@ public class Game {
         int x; // Координата x
         int y; // Координата y
         do {
-            System.out.println("Введите координаты вида X Y\n" +
+            System.out.println("Введите координаты вида X Y\n" 1+
                     "Введите координату X:");
             checkNumber();
             x = scanner.nextInt() - 1;
