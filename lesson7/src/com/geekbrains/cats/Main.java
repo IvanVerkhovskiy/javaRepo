@@ -48,6 +48,9 @@ public class Main {
         System.out.println();
 //        Кошки начинают кушать
         Cat.eat(plate, cats);
+        System.out.println("Все кошки поели!");
+        System.out.println();
+        Cat.getInformationForCats(cats);
     }
 
     //    Метод для проверки, что пользователь ввёл число

@@ -33,6 +33,7 @@ public class Plate {
             }
             return newFood;
         } else {
+            System.out.println("Введите количество еды:");
             newFood = scanner.nextInt();
             return newFood;
         }

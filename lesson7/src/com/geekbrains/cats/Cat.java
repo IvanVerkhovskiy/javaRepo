@@ -98,8 +98,6 @@ public class Cat {
             plate.setFood(newFood);
             eat(plate, cats);
         }
-        System.out.println("Все кошки поели!");
-        Cat.getInformationForCats(cats);
     }
 
     //    Находим голодную кошку
