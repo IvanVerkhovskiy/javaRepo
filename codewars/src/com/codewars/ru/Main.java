@@ -35,6 +35,42 @@ public class Main {
         System.out.println(accum("EvidjUnokmM"));
         System.out.println(accum("HbideVbxncC"));
 //        System.out.println("Z-Pp-Ggg-Llll-Nnnnn-Rrrrrr-Xxxxxxx-Qqqqqqqq-Eeeeeeeee-Nnnnnnnnnn-Uuuuuuuuuuu");
+
+        /*
+            Вам дадут слово. Ваша задача - вернуть средний символ слова.
+            Если длина слова нечетная, верните средний символ.
+            Если длина слова четная, вернуть 2 средних символа.
+            #Примеры:
+            Kata.getMiddle ("test") должен вернуть "es"
+            Kata.getMiddle ("тестирование") должен вернуть "t"
+            Kata.getMiddle ("средний") должен вернуть "дд"
+            Kata.getMiddle ("A") должен вернуть "A"
+         */
+        System.out.println("Task 4");
+        System.out.println(getMiddle("test"));
+        System.out.println(getMiddle("middle"));
+        System.out.println(getMiddle("testing"));
+        System.out.println(getMiddle("A"));
+        System.out.println(getMiddle("java"));
+    }
+
+//    Поиск среднего символа в тексте
+    public static String getMiddle(String word){
+        char [] textArray = word.toCharArray(); // массив с буквами
+        String newText = ""; // результат
+        int value = textArray.length / 2;
+        value = (int)(Math.ceil(value));
+        if (textArray.length == 1){
+            newText = newText + textArray[0];
+        } else {
+            if ((textArray.length%2 == 0)){
+                newText = newText + textArray[value-1];
+                newText = newText + textArray[value];
+            } else {
+                newText = newText + textArray[value];
+            }
+        }
+        return newText;
     }
 //    Функция накопителя
     public static String accum(String s){
