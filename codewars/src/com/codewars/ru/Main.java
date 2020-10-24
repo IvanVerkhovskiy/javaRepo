@@ -10,6 +10,7 @@ public class Main {
         System.out.println("Task 1");
         System.out.println(isPrime(0));
         System.out.println(isPrime(1));
+        System.out.println();
 
         /*
             Возвращает количество (количество) гласных в заданной строке.
@@ -18,6 +19,7 @@ public class Main {
          */
         System.out.println("Task 2");
         System.out.println(checkVowels("abracadabra"));
+        System.out.println();
 
         /*
             В приведенных ниже примерах показано, как написать функцию накопителя:
@@ -34,7 +36,7 @@ public class Main {
         System.out.println(accum("MjtkuBovqrU"));
         System.out.println(accum("EvidjUnokmM"));
         System.out.println(accum("HbideVbxncC"));
-//        System.out.println("Z-Pp-Ggg-Llll-Nnnnn-Rrrrrr-Xxxxxxx-Qqqqqqqq-Eeeeeeeee-Nnnnnnnnnn-Uuuuuuuuuuu");
+        System.out.println();
 
         /*
             Вам дадут слово. Ваша задача - вернуть средний символ слова.
@@ -52,6 +54,47 @@ public class Main {
         System.out.println(getMiddle("testing"));
         System.out.println(getMiddle("A"));
         System.out.println(getMiddle("java"));
+        System.out.println();
+
+        /*
+            В этом небольшом задании вам дается строка чисел, разделенных пробелами,
+            и вы должны возвращать наибольшее и наименьшее числа.
+
+            Пример:
+            highAndLow ("1 2 3 4 5") // возвращаем "5 1"
+            highAndLow ("1 2 -3 4 5") // возвращаем "5 -3"
+            highAndLow ("1 9 3 4-5") // возвращаем "9-5"
+
+            Заметки:
+            Все числа действительны в формате Int32, их не нужно проверять.
+            Во входной строке всегда будет хотя бы одно число.
+            Строка вывода должна состоять из двух чисел, разделенных одним пробелом, при этом наибольшее число должно быть первым.
+         */
+        System.out.println(highAndLow("8 3 -5 42 -1 0 0 -9 4 7 4 -4"));
+    }
+
+//    Поиск минимального и максимального значения
+    public static String highAndLow(String numbers){
+        char [] textArray = numbers.toCharArray();
+        String result;
+        int number;
+        int min = 0;
+        int max = 0;
+        int [] value = new int [textArray.length];
+//        Перекладываем значения из символьного типа в числовой тип
+        for (int i = 0; i < textArray.length; i++){
+            number = Character.getNumericValue(textArray[i]);
+            value[i] = number;
+        }
+        for (int i = 0; i < value.length; i++){
+            if (min <= value[i]){
+                max = value[i];
+            } else {
+                min = value[i];
+            }
+        }
+        result = max + " " + min;
+        return result;
     }
 
 //    Поиск среднего символа в тексте
@@ -141,3 +184,11 @@ public class Main {
         return false;
     }
 }
+
+//    int number;
+//    int [] value = new int [textArray.length];
+////        Перекладываем значения из символьного типа в числовой тип
+//        for (int i = 0; i < textArray.length; i++){
+//        number = textArray[i];
+//        value[i] = number;
+//        }
