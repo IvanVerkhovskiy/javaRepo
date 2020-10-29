@@ -37,6 +37,9 @@ public class Main {
         System.out.println(accum("EvidjUnokmM"));
         System.out.println(accum("HbideVbxncC"));
         System.out.println();
+=======
+//        System.out.println("Z-Pp-Ggg-Llll-Nnnnn-Rrrrrr-Xxxxxxx-Qqqqqqqq-Eeeeeeeee-Nnnnnnnnnn-Uuuuuuuuuuu");
+
 
         /*
             Вам дадут слово. Ваша задача - вернуть средний символ слова.
@@ -184,11 +187,3 @@ public class Main {
         return false;
     }
 }
-
-//    int number;
-//    int [] value = new int [textArray.length];
-////        Перекладываем значения из символьного типа в числовой тип
-//        for (int i = 0; i < textArray.length; i++){
-//        number = textArray[i];
-//        value[i] = number;
-//        }
