@@ -58,5 +58,25 @@ public class Main {
         Collections.addAll(set, wordArray);
 
         System.out.println(Arrays.toString(set.toArray()));
+
+        System.out.println("Задание номер 2");
+
+        PhoneBook phoneBook = new PhoneBook();
+
+        phoneBook.add(798324752, "LEO");
+        phoneBook.add(384975932, "Romanenko");
+        phoneBook.add(495867567, "Lobanov");
+        phoneBook.add(345345121, "Kupitman");
+        phoneBook.add(345665756, "Bykov");
+        phoneBook.add(679856346, "Fil");
+
+        System.out.println(phoneBook.contacts + "\n");
+
+        phoneBook.get("LEO");
+        phoneBook.get("Romanenko");
+        phoneBook.get("Lobanov");
+        phoneBook.get("Fil");
+        phoneBook.get("Kupitman");
+        phoneBook.get("Bykov");
     }
 }
