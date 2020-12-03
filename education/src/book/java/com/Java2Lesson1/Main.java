@@ -1,7 +1,5 @@
 package book.java.com.Java2Lesson1;
 
-import java.util.Arrays;
-
 public class Main {
     public static void main(String[] args) {
         Animal[] animals = {new Cat("Барсик"), new Dog("Шарик", "Белый")};
@@ -22,5 +20,21 @@ public class Main {
         System.out.println(cat343 instanceof Cat);
 
         System.out.println(animals1[1].name);
+
+        Dog dog = new Dog("Бублик", "серый");
+        testInterface(dog);
+        System.out.println();
+    }
+
+    static void testInterface(Waterfowl animal){
+        animal.swim();
+        System.out.println("Собачка");
+    }
+
+    public enum Fruit{
+        ORANGE,
+        APPLE,
+        BANANA,
+        CHERRY
     }
 }
