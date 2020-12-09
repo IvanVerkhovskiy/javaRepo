@@ -1,40 +1,32 @@
 package book.java.com.Java2Lesson1;
 
+import book.java.com.Java2Lesson1.obstruction.RunningTrack;
+import book.java.com.Java2Lesson1.person.Cat;
+import book.java.com.Java2Lesson1.person.People;
+
 public class Main {
-    public static void main(String[] args) {
-        Animal[] animals = {new Cat("Барсик"), new Dog("Шарик", "Белый")};
-//        Перебор массива
-        for(Animal animal : animals){
-            if (animal instanceof Dog){
-                System.out.println(((Dog) animal).getAbc());
+    public static void main(String[] args){
+
+        boolean check = false;
+
+        RunningTrack runningTrack = new RunningTrack(50);
+
+        Object[] objects = {
+                new People("Петя", 100),
+                new People("Барсик", 90),
+                new Cat("Кекс", 90)
+        };
+
+        Object[] objects1 = {
+                new RunningTrack(100),
+        };
+
+        for (int i = 0; i < objects.length; i++){
+            if (objects[i] instanceof People){
+                check = ((People)objects[i]).run(objects1[0]);
+            } else if (objects[i] instanceof Cat){
+                check = ((Cat)objects[i]).run(objects1[0]);
             }
         }
-
-        Animal[] animals1 = {new Cat("Петя"), new Cat("Вася")};
-        for (Animal animal : animals1){
-            animals1[1].name = "1213";
-        }
-
-        Cat cat343 = new Cat("Пуся");
-        System.out.print("\"Пуся\"");
-        System.out.println(cat343 instanceof Cat);
-
-        System.out.println(animals1[1].name);
-
-        Dog dog = new Dog("Бублик", "серый");
-        testInterface(dog);
-        System.out.println();
-    }
-
-    static void testInterface(Waterfowl animal){
-        animal.swim();
-        System.out.println("Собачка");
-    }
-
-    public enum Fruit{
-        ORANGE,
-        APPLE,
-        BANANA,
-        CHERRY
     }
 }
