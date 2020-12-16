@@ -1,4 +1,4 @@
-package book.java.com.Java2Lesson2;
+package book.java.com.Java2Lesson0;
 
 public class DrumKit {
 //    Переменные экземпляра
