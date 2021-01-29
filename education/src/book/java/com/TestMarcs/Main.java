@@ -8,6 +8,10 @@ import java.util.Scanner;
 public class Main {
     public static String nameFile = "NewGenerateMarks.txt";
     public static String newMarks = "Z3TGLRRQBWIKBVBBDLNXDYYEBYITH436KNUELVDU46WFD52S3LS3FAFNCKV3GMR66UJ6I5Z57ZH3R5DHIKUNWF7F6IIBFGF4WOTXFQQI63FQ3BTBFVLU2LTSN5H8KEQSI"; // шаблон новой марки
+    public static String[] finalMarks; // массив с марками
+    public static String [] arrayMarksTagAmc; // массив с марками (тег Amc)
+    public static Scanner scanner = new Scanner(System.in); // Для чисел
+    public static Scanner scannerText = new Scanner(System.in); // Для текста
 
     public static void main(String[] args) throws IOException {
 
@@ -19,9 +23,6 @@ public class Main {
         int serialMarks = 0; // Серия марки 3 символа
         int numberMarks = 0; // Номер марки 8 символов
         int serviceInformation; // служ информация ЕГАИС (7 символов)
-
-        Scanner scanner = new Scanner(System.in); // Для чисел
-        Scanner scannerText = new Scanner(System.in); // Для текста
 
         System.out.println("Генерация новых марок (150 символов)\n" +
                 "1. Старт\n" +
@@ -48,6 +49,7 @@ public class Main {
                             numberMarks = 27459081 + (int)(Math.random() * 9991);
                             serviceInformation = 7283756 + (int)(Math.random() * 893);
                             generateMarks(count, typeMarks, serialMarks, numberMarks, serviceInformation);
+                            change();
                             break;
                         case 2:
                             System.out.println("Введите количество марок для генерации:");
@@ -66,9 +68,10 @@ public class Main {
                             System.out.println("Введите служебную информацию ЕГАИС (7 символов)");
                             serviceInformation = scanner.nextInt();
                             generateMarks(count, typeMarks, serialMarks, numberMarks, serviceInformation);
+                            change();
                     }
                     System.out.println("Сгенерировать новые данные?\n" +
-                            "1. Да (данные в файле будут заменены)\n" +
+                            "1. Да (данные в файле " + nameFile + " будут заменены)\n" +
                             "2. Создать новый файл\n" +
                             "3. Нет");
                     step = scanner.nextInt();
@@ -89,18 +92,34 @@ public class Main {
         scannerText.close();
     }
 
-    // Метод - генерация марок
-    public static void generateMarks(int count, int typeMarks, int serialMarks, int numberMarks, int serviceInformation) throws IOException {
+    // Метод - создание марки
+    public static void generateMarks(int count, int typeMarks, int serialMarks, int numberMarks, int serviceInformation){
+        int newValue = 0;
+        String [] marks = new String[count];
+        String [] marksTagAmc = new String[count];
+
+        for (int i = 0; i < count; i++) {
+            newValue = numberMarks + i;
+            marks[i] = typeMarks + "" + serialMarks + "" + newValue + "" + serviceInformation + newMarks;
+            marksTagAmc[i] = "<Amc>" + marks[i] + "</Amc>"; // складываем в массив марки с тегом <Amc> и </Amc>
+        }
+        finalMarks = marks;
+        arrayMarksTagAmc = marksTagAmc;
+    }
+
+    // Создане файла + перекладывание данных
+    public static void createFile(String[] marks) throws IOException{
         File file = new File(nameFile);
         boolean success = file.createNewFile();
         FileWriter writer = new FileWriter(file);
+        String m;
 
-        int newValue = 0;
-        String finalMarks; // Полученная марка
-        for (int i = 0; i < count; i++) {
-            newValue = numberMarks + i;
-            finalMarks = typeMarks + "" + serialMarks + "" + newValue + "" + serviceInformation + newMarks + "\n";
-            writer.write(finalMarks);
+        for (int i = 0; i < marks.length; i++){
+            m = marks[i];
+            if (i != marks.length - 1){
+                m = marks[i] + "\n";
+            }
+            writer.write(m);
             writer.flush();
         }
         writer.close();
@@ -108,6 +127,20 @@ public class Main {
             System.out.println("Данные готовы!");
         } else {
             System.out.println("Что-то пошло не так!");
+        }
+    }
+
+    // Выбор
+    public static void change() throws IOException{
+        createFile(finalMarks);
+        int step = 0;
+        System.out.println("Создать отдельный файл с тегами <Amc> и </Amc>?\n" +
+                "1. Да\n" +
+                "2. Нет");
+        step = scanner.nextInt();
+        if (step == 1){
+            nameFile = "AmcTag" + nameFile;
+            createFile(arrayMarksTagAmc);
         }
     }
 
