@@ -22,7 +22,7 @@ public class Main {
         int typeMarks = 0; // Тип марки 3 символа
         int serialMarks = 0; // Серия марки 3 символа
         int numberMarks = 0; // Номер марки 8 символов
-        int serviceInformation; // служ информация ЕГАИС (7 символов)
+        int serviceInformation = 1018001; // служ информация ЕГАИС (7 символов)
 
         System.out.println("Генерация новых марок (150 символов)\n" +
                 "1. Старт\n" +
@@ -47,7 +47,6 @@ public class Main {
                             typeMarks = 200;
                             serialMarks = 216;
                             numberMarks = 27459081 + (int)(Math.random() * 9991);
-                            serviceInformation = 7283756 + (int)(Math.random() * 893);
                             generateMarks(count, typeMarks, serialMarks, numberMarks, serviceInformation);
                             change();
                             break;
@@ -65,8 +64,6 @@ public class Main {
                             serialMarks = scanner.nextInt();
                             System.out.println("Введите номер марки (8 символов)");
                             numberMarks = scanner.nextInt();
-                            System.out.println("Введите служебную информацию ЕГАИС (7 символов)");
-                            serviceInformation = scanner.nextInt();
                             generateMarks(count, typeMarks, serialMarks, numberMarks, serviceInformation);
                             change();
                     }
