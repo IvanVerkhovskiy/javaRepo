@@ -1,7 +1,5 @@
 package book.java.com.Java2Lesson2HW;
 
-import sun.tools.java.Parser;
-
 import java.util.Scanner;
 
 public class Main {
